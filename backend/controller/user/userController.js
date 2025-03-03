@@ -1,6 +1,8 @@
 import { User } from "../../model/index.js";
 import bcrypt from "bcrypt"; // Import bcrypt for password hashing
 import { generateToken } from "../../security/jwt-util.js";
+import ShrdExpense from "../../model/shrdExpense/ShrdExpense.js";
+import Chore from "../../model/chore/Chore.js";
 // Create User
 export const createUser = async (req, res) => {
   try {
@@ -63,7 +65,6 @@ export const getUserById = async (req, res) => {
   }
 };
 
-
 export const updateUser = async (req, res) => {
   console.log("Incoming request body:", req.body);
   console.log("Incoming file:", req.file);
@@ -95,7 +96,7 @@ export const updateUser = async (req, res) => {
     await user.save();
 
     // Generate a new token with updated user info
-    const newToken = generateToken({ Users: user.toJSON() });
+    const newToken = generateToken({ Users: user });
 
     return res.status(200).send({
       data: user,
@@ -116,7 +117,8 @@ export const leaveRoom = async (req, res) => {
     if (!userId) {
       return res.status(400).send({ message: "User ID is required" });
     }
-
+    await ShrdExpense.destroy({ where: { Agent: userId } });
+    await Chore.destroy({ where: { UserId: userId } });
     const [updatedCount] = await User.update(
       { RoomId: null },
       { where: { Id: userId } } // ✅ Corrected where condition
@@ -128,7 +130,7 @@ export const leaveRoom = async (req, res) => {
         .send({ message: "User not found or already left the room" });
     }
     const updatedUser = await User.findByPk(userId);
-    const newToken = generateToken({ Users: updatedUser.toJSON() });
+    const newToken = generateToken({ Users: updatedUser });
 
     return res
       .status(200)

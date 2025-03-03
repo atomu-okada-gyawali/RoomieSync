@@ -149,14 +149,14 @@ function Login() {
           </form>
           <p className="mt-6 text-center text-gray-600">
             Don't have an account?{" "}
-            <p
-              onClick={() => {
-                navigate("/register");
-              }}
-              className="text-purple-600 hover:underline"
-            >
-              Sign up
-            </p>
+          </p>
+          <p
+            onClick={() => {
+              navigate("/register");
+            }}
+            className="text-purple-600 text-center hover:underline"
+          >
+            Sign up
           </p>
         </div>
         <div className="hidden md:block md:w-1/2 bg-purple-600 p-8">

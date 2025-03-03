@@ -5,12 +5,11 @@ import routes from "./routes/index.js";
 import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
-import { fileURLToPath } from 'url';
 
 import { authenticateToken } from "./middleware/token-middleware.js";
 dotenv.config();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
+const __dirname = path.resolve(); // Get the current directory
 const app = express();
 
 // Middleware
@@ -29,3 +28,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+export default app;

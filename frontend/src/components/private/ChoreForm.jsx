@@ -112,8 +112,6 @@ function ChoreForm({ isOpen, onClose, dataToUpdate }) {
         if (response.status === 200) {
           alert("Chore submitted successfully!");
           onClose();
-
-          fetchChores(); // Refresh the chore list
         }
       } else {
         // Create new chore
@@ -141,6 +139,7 @@ function ChoreForm({ isOpen, onClose, dataToUpdate }) {
           }
         );
         if (choreResponse.status === 201) {
+          alert("Chore submitted successfully!");
           onClose();
         }
       }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import ExpenseForm from "./ExpenseForm";
 import SharedList from "./SharedList";
-
+import axios from "axios";
 const ExpenseSharing = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data2Update, setdata2Update] = useState(null);

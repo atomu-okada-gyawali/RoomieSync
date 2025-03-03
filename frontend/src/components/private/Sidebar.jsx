@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-function Sidebar({ setCurrentComp, handleLogout }) {
+function Sidebar({ setCurrentComp }) {
   const navigate = useNavigate();
   function handleLogout() {
     // Remove the token from localStorage
     localStorage.removeItem("token");
+    alert("Logging out")
     navigate("/");
   }
   return (

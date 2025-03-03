@@ -26,7 +26,7 @@ const login = async (req, res) => {
       user.Password
     );
     if (isPasswordValid) {
-      const token = generateToken({ Users: user.toJSON() });
+      const token = generateToken({ Users: user });
       return res.status(200).send({
         data: { access_token: token },
         message: "Successfully logged in",

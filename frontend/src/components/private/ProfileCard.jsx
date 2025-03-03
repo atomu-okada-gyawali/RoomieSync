@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function ProfileCardTemp({
+function ProfileCard({
   id,
   name,
   contact,
@@ -39,7 +39,7 @@ function ProfileCardTemp({
         if (onLeaveSuccess) {
           onLeaveSuccess(id);
         }
-
+        
         // Only navigate if the request was successful
         setTimeout(() => {
           navigate("/RoomForm");
@@ -104,4 +104,4 @@ function ProfileCardTemp({
   );
 }
 
-export default ProfileCardTemp;
+export default ProfileCard;
